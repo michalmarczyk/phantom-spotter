@@ -27,6 +27,5 @@
      (let [rq (ReferenceQueue.)
            pr (PhantomReference. obj rq)]
        (future
-         (while (not (.poll rq))
-           (Thread/sleep 100))
+         (.remove rq 0)
          (callback msg)))))
